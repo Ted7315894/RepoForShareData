@@ -1,0 +1,458 @@
+make[1]: Entering directory '/home/chenwu/AzureESP32/esp-idf/tools/kconfig'
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o mconf.o mconf.c
+flex -L -P zconf -o zconf.lex.c zconf.l
+bison -t -l -p zconf -o zconf.tab.c zconf.y
+sed -E "s/\\x0D$//" zconf.gperf | gperf -t --output-file zconf.hash.c -a -C -E -g -k '1,3,$' -p -t
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o zconf.tab.o zconf.tab.c
+lxdialog/check-lxdialog.sh -check cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE -lncurses -ltinfo
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/checklist.o lxdialog/checklist.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/util.o lxdialog/util.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/inputbox.o lxdialog/inputbox.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/textbox.o lxdialog/textbox.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/yesno.o lxdialog/yesno.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/menubox.o lxdialog/menubox.c
+cc -o mconf mconf.o zconf.tab.o lxdialog/checklist.o lxdialog/util.o lxdialog/inputbox.o lxdialog/textbox.o lxdialog/yesno.o lxdialog/menubox.o -lncurses -ltinfo
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o conf.o conf.c
+cc -o conf conf.o  zconf.tab.o -lncurses -ltinfo
+make[1]: Leaving directory '/home/chenwu/AzureESP32/esp-idf/tools/kconfig'
+GENCONFIG
+WARNING: Toolchain version is not supported: crosstool-NG 8d95cad
+Expected to see version: crosstool-NG crosstool-ng-1.22.0-61-gab8375a
+Please check ESP-IDF setup instructions and update the toolchain, or proceed at your own risk.
+WARNING: Compiler version is not supported: 4.8.5
+Expected to see version(s): 5.2.0
+Please check ESP-IDF setup instructions and update the toolchain, or proceed at your own risk.
+CC src/bootloader_flash.o
+CC src/efuse.o
+CC src/secure_boot.o
+CC src/secure_boot_signatures.o
+CC src/flash_partitions.o
+CC src/esp_image_format.o
+CC src/flash_encrypt.o
+CC src/bootloader_random.o
+AR libbootloader_support.a
+CC log.o
+AR liblog.a
+CC spi_flash_rom_patch.o
+AR libspi_flash.a
+CC micro-ecc/uECC.o
+AR libmicro-ecc.a
+CC bootloader_start.o
+AR libmain.a
+LD bootloader.elf
+esptool.py v2.0-beta1
+Building partitions from /home/chenwu/AzureESP32/esp-idf/components/partition_table/partitions_singleapp.csv...
+CC esp_ota_ops.o
+AR libapp_update.a
+CC src/bootloader_flash.o
+CC src/efuse.o
+CC src/secure_boot.o
+CC src/secure_boot_signatures.o
+CC src/flash_partitions.o
+CC src/esp_image_format.o
+CC src/flash_encrypt.o
+CC src/bootloader_random.o
+AR libbootloader_support.a
+CC bt.o
+AR libbt.a
+CC azure/c-utility/src/xlogging.o
+CC azure/c-utility/src/buffer.o
+CC azure/c-utility/src/consolelogger.o
+CC azure/c-utility/src/constbuffer.o
+CC azure/c-utility/src/constmap.o
+CC azure/c-utility/src/crt_abstractions.o
+CC azure/c-utility/src/doublylinkedlist.o
+CC azure/c-utility/src/gballoc.o
+CC azure/c-utility/src/gb_stdio.o
+CC azure/c-utility/src/gb_time.o
+CC azure/c-utility/src/hmac.o
+CC azure/c-utility/src/hmacsha256.o
+CC azure/c-utility/src/httpapiex.o
+CC azure/c-utility/src/httpapiexsas.o
+CC azure/c-utility/src/httpheaders.o
+CC azure/c-utility/src/map.o
+CC azure/c-utility/src/optionhandler.o
+CC azure/c-utility/src/sastoken.o
+CC azure/c-utility/src/sha1.o
+CC azure/c-utility/src/sha224.o
+CC azure/c-utility/src/sha384-512.o
+CC azure/c-utility/src/strings.o
+CC azure/c-utility/src/string_tokenizer.o
+CC azure/c-utility/src/urlencode.o
+CC azure/c-utility/src/usha.o
+CC azure/c-utility/src/vector.o
+CC azure/c-utility/src/xio.o
+CC azure/c-utility/src/base64.o
+CC azure/iothub_client/src/iothub_client.o
+CC azure/iothub_client/src/iothub_client_ll.o
+CC azure/iothub_client/src/iothub_client_ll_uploadtoblob.o
+CC azure/iothub_client/src/iothub_message.o
+CC azure/iothub_client/src/iothubtransport.o
+CC azure/iothub_client/src/iothubtransportmqtt.o
+CC azure/iothub_client/src/iothubtransport_mqtt_common.o
+CC azure/iothub_client/src/version.o
+CC azure/umqtt/src/mqtt_client.o
+CC azure/umqtt/src/mqtt_codec.o
+CC azure/umqtt/src/mqtt_message.o
+CC adapter/azure/c-utility/agenttime_esp32.o
+CC adapter/azure/c-utility/platform_esp32.o
+CC adapter/azure/c-utility/threadapi_esp32.o
+CC adapter/azure/c-utility/tickcounter_esp32.o
+CC adapter/azure/c-utility/tlsio_ssl_esp32.o
+AR libcloud_support.a
+CC libcoap/src/address.o
+CC libcoap/src/async.o
+CC libcoap/src/block.o
+CC libcoap/src/coap_time.o
+CC libcoap/src/debug.o
+CC libcoap/src/encode.o
+CC libcoap/src/hashkey.o
+CC libcoap/src/mem.o
+CC libcoap/src/net.o
+CC libcoap/src/option.o
+CC libcoap/src/pdu.o
+CC libcoap/src/resource.o
+CC libcoap/src/str.o
+CC libcoap/src/subscribe.o
+CC libcoap/src/uri.o
+CC port/coap_io_socket.o
+AR libcoap.a
+CXX cxx_guards.o
+AR libcxx.a
+CC spi_master.o
+CC sigmadelta.o
+CC uart.o
+CC i2s.o
+CC periph_ctrl.o
+CC ledc.o
+CC gpio.o
+CC pcnt.o
+CC rmt.o
+CC sdmmc_transaction.o
+CC timer.o
+CC sdmmc_host.o
+CC i2c.o
+CC rtc_module.o
+AR libdriver.a
+CC panic.o
+CC core_dump.o
+CC event_default_handlers.o
+CC task_wdt.o
+CC system_api.o
+CC lib_printf.o
+CC gdbstub.o
+CC cpu_util.o
+CC phy_init.o
+CC deep_sleep.o
+CC heap_alloc_caps.o
+CC freertos_hooks.o
+CC crosscore_int.o
+CC cpu_start.o
+CC ipc.o
+CC intr_alloc.o
+CC int_wdt.o
+CC event_loop.o
+CC cpu_freq.o
+CC hw_random.o
+CC brownout.o
+CC hwcrypto/sha.o
+CC hwcrypto/aes.o
+AR libesp32.a
+CC emac_dev.o
+CC emac_main.o
+AR libethernet.a
+CC library/xmltok.o
+CC library/xmlparse.o
+CC library/xmlrole.o
+CC library/xmltok_ns.o
+CC library/xmltok_impl.o
+CC port/minicheck.o
+CC port/expat_element.o
+CC port/chardata.o
+AR libexpat.a
+CC src/option/syscall.o
+CC src/option/unicode.o
+CC src/ff.o
+CC src/vfs_fat_sdmmc.o
+CC src/vfs_fat.o
+CC src/diskio.o
+AR libfatfs.a
+CC ringbuf.o
+CC heap_regions_debug.o
+CC xtensa_intr.o
+CC queue.o
+CC croutine.o
+CC list.o
+CC xtensa_init.o
+CC port.o
+CC heap_regions.o
+CC event_groups.o
+CC tasks.o
+CC timers.o
+CC FreeRTOS-openocd.o
+CC xtensa_overlay_os_hook.o
+AS xtensa_intr_asm.o
+AS xtensa_context.o
+AS xtensa_vectors.o
+AS portasm.o
+AR libfreertos.a
+CC library/cJSON.o
+CC port/cJSON_Utils.o
+AR libjson.a
+CC log.o
+AR liblog.a
+CC api/pppapi.o
+CC api/netbuf.o
+CC api/api_lib.o
+CC api/netifapi.o
+CC api/tcpip.o
+CC api/netdb.o
+CC api/err.o
+CC api/api_msg.o
+CC api/sockets.o
+CC api/lwip_debug.o
+CC apps/sntp/sntp.o
+CC apps/ping/ping.o
+CC apps/ping/esp_ping.o
+CC apps/dhcpserver.o
+CC core/ipv4/ip_frag.o
+CC core/ipv4/dhcp.o
+CC core/ipv4/ip4_addr.o
+CC core/ipv4/igmp.o
+CC core/ipv4/ip4.o
+CC core/ipv4/autoip.o
+CC core/ipv4/icmp.o
+CC core/ipv6/ip6_frag.o
+CC core/ipv6/dhcp6.o
+CC core/ipv6/inet6.o
+CC core/ipv6/ip6_addr.o
+CC core/ipv6/ip6.o
+CC core/ipv6/nd6.o
+CC core/ipv6/mld6.o
+CC core/ipv6/ethip6.o
+CC core/ipv6/icmp6.o
+CC core/stats.o
+CC core/mem.o
+CC core/init.o
+CC core/memp.o
+CC core/tcp.o
+CC core/dns.o
+CC core/ip.o
+CC core/def.o
+CC core/raw.o
+CC core/tcp_in.o
+CC core/pbuf.o
+CC core/netif.o
+CC core/sys.o
+CC core/timers.o
+CC core/inet_chksum.o
+CC core/udp.o
+CC core/tcp_out.o
+CC netif/slipif.o
+CC netif/etharp.o
+CC netif/ethernet.o
+CC netif/lowpan6.o
+CC netif/ethernetif.o
+CC port/freertos/sys_arch.o
+CC port/netif/wlanif.o
+CC port/netif/ethernetif.o
+AR liblwip.a
+CC library/ecp_curves.o
+CC library/pkcs12.o
+CC library/error.o
+CC library/pkcs5.o
+CC library/cipher_wrap.o
+CC library/sha1.o
+CC library/x509_csr.o
+CC library/md4.o
+CC library/gcm.o
+CC library/ecp.o
+CC library/blowfish.o
+CC library/x509.o
+CC library/cipher.o
+CC library/ssl_ticket.o
+CC library/pem.o
+CC library/entropy_poll.o
+CC library/x509write_csr.o
+CC library/certs.o
+CC library/version_features.o
+CC library/havege.o
+CC library/ripemd160.o
+CC library/rsa.o
+CC library/net.o
+CC library/entropy.o
+CC library/md_wrap.o
+CC library/sha256.o
+CC library/dhm.o
+CC library/pkwrite.o
+CC library/ssl_cli.o
+CC library/timing.o
+CC library/asn1parse.o
+CC library/ssl_tls.o
+CC library/version.o
+CC library/ssl_cache.o
+CC library/memory_buffer_alloc.o
+CC library/md2.o
+CC library/ecdsa.o
+CC library/ssl_srv.o
+CC library/x509_crt.o
+CC library/ecdh.o
+CC library/debug.o
+CC library/x509_create.o
+CC library/ecjpake.o
+CC library/oid.o
+CC library/asn1write.o
+CC library/pkcs11.o
+CC library/sha512.o
+CC library/base64.o
+CC library/xtea.o
+CC library/aes.o
+CC library/x509_crl.o
+CC library/x509write_crt.o
+CC library/arc4.o
+CC library/bignum.o
+CC library/pkparse.o
+CC library/padlock.o
+CC library/threading.o
+CC library/md.o
+CC library/camellia.o
+CC library/aesni.o
+CC library/ssl_ciphersuites.o
+CC library/ctr_drbg.o
+CC library/md5.o
+CC library/ssl_cookie.o
+CC library/hmac_drbg.o
+CC library/des.o
+CC library/pk.o
+CC library/platform.o
+CC library/ccm.o
+CC library/pk_wrap.o
+CC port/esp_sha1.o
+CC port/net.o
+CC port/esp_sha256.o
+CC port/esp_bignum.o
+CC port/esp_hardware.o
+CC port/esp_sha512.o
+AR libmbedtls.a
+CC mdns.o
+AR libmdns.a
+CC micro-ecc/uECC.o
+AR libmicro-ecc.a
+CC time.o
+CC reent_init.o
+CC syscalls.o
+CC syscall_table.o
+CC locks.o
+AR libnewlib.a
+CC library/nghttp2_http.o
+CC library/nghttp2_version.o
+CC library/nghttp2_mem.o
+CC library/nghttp2_hd_huffman.o
+CC library/nghttp2_session.o
+CC library/nghttp2_callbacks.o
+CC library/nghttp2_stream.o
+CC library/nghttp2_hd.o
+CC library/nghttp2_priority_spec.o
+CC library/nghttp2_buf.o
+CC library/nghttp2_option.o
+CC library/nghttp2_npn.o
+CC library/nghttp2_rcbuf.o
+CC library/nghttp2_helper.o
+CC library/nghttp2_frame.o
+CC library/nghttp2_outbound_item.o
+CC library/nghttp2_hd_huffman_data.o
+CC library/nghttp2_pq.o
+CC library/nghttp2_queue.o
+CC library/nghttp2_submit.o
+CC library/nghttp2_map.o
+CC port/http_parser.o
+AR libnghttp.a
+CXX src/nvs_types.o
+CXX src/nvs_page.o
+CXX src/nvs_item_hash_list.o
+CXX src/nvs_pagemanager.o
+CXX src/nvs_storage.o
+CXX src/nvs_api.o
+AR libnvs_flash.a
+CC library/ssl_cert.o
+CC library/ssl_methods.o
+CC library/ssl_pkey.o
+CC library/ssl_x509.o
+CC library/ssl_lib.o
+CC library/ssl_stack.o
+CC platform/ssl_pm.o
+CC platform/ssl_port.o
+AR libopenssl.a
+CC sdmmc_cmd.o
+AR libsdmmc.a
+CC flash_mmap.o
+CC partition.o
+CC spi_flash_rom_patch.o
+CC cache_utils.o
+CC flash_ops.o
+AR libspi_flash.a
+CC tcpip_adapter_lwip.o
+AR libtcpip_adapter.a
+CC ulp.o
+AR libulp.a
+CC vfs_uart.o
+CC vfs.o
+AR libvfs.a
+CC src/crypto/aes-internal-enc.o
+CC src/crypto/sha256-internal.o
+CC src/crypto/md5-internal.o
+CC src/crypto/aes-internal.o
+CC src/crypto/sha1.o
+CC src/crypto/aes-internal-dec.o
+CC src/crypto/crypto_internal.o
+CC src/crypto/aes-unwrap.o
+CC src/crypto/crypto_internal-rsa.o
+CC src/crypto/des-internal.o
+CC src/crypto/dh_groups.o
+CC src/crypto/ms_funcs.o
+CC src/crypto/aes-wrap.o
+CC src/crypto/sha1-internal.o
+CC src/crypto/md4-internal.o
+CC src/crypto/dh_group5.o
+CC src/crypto/sha256.o
+CC src/crypto/md5.o
+CC src/crypto/aes-cbc.o
+CC src/crypto/sha1-pbkdf2.o
+CC src/crypto/rc4.o
+CC src/crypto/crypto_internal-modexp.o
+CC src/crypto/crypto_internal-cipher.o
+CC src/crypto/bignum.o
+CC port/os_xtensa.o
+AR libwpa_supplicant.a
+CC eri.o
+CC trax.o
+AR libxtensa-debug-module.a
+CC iothub_client_sample_mqtt.o
+CC azure_main.o
+AR libmain.a
+LD azure.elf
+esptool.py v2.0-beta1
+Flashing binaries to serial port /dev/ttyUSB1 (app at offset 0x10000)...
+esptool.py v2.0-beta1
+Connecting.................
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 921600
+Changed.
+Attaching SPI flash...
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Flash params set to 0x0220
+Compressed 11296 bytes to 6630...
+Writing at 0x00001000... (100 %)Wrote 11296 bytes (6630 compressed) at 0x00001000 in 0.1 seconds (effective 899.7 kbit/s)...
+Hash of data verified.
+Compressed 771328 bytes to 435919...
+Writing at 0x00010000... (3 %)Writing at 0x00014000... (7 %)Writing at 0x00018000... (11 %)Writing at 0x0001c000... (14 %)Writing at 0x00020000... (18 %)Writing at 0x00024000... (22 %)Writing at 0x00028000... (25 %)Writing at 0x0002c000... (29 %)Writing at 0x00030000... (33 %)Writing at 0x00034000... (37 %)Writing at 0x00038000... (40 %)Writing at 0x0003c000... (44 %)Writing at 0x00040000... (48 %)Writing at 0x00044000... (51 %)Writing at 0x00048000... (55 %)Writing at 0x0004c000... (59 %)Writing at 0x00050000... (62 %)Writing at 0x00054000... (66 %)Writing at 0x00058000... (70 %)Writing at 0x0005c000... (74 %)Writing at 0x00060000... (77 %)Writing at 0x00064000... (81 %)Writing at 0x00068000... (85 %)Writing at 0x0006c000... (88 %)Writing at 0x00070000... (92 %)Writing at 0x00074000... (96 %)Writing at 0x00078000... (100 %)Wrote 771328 bytes (435919 compressed) at 0x00010000 in 7.9 seconds (effective 776.6 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 82...
+Writing at 0x00008000... (100 %)Wrote 3072 bytes (82 compressed) at 0x00008000 in 0.0 seconds (effective 9612.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting...

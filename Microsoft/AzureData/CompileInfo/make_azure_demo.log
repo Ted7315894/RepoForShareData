@@ -1,0 +1,536 @@
+make[1]: Entering directory '/home/chenwu/AzureESP32/esp-idf/tools/kconfig'
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o mconf.o mconf.c
+flex -L -P zconf -o zconf.lex.c zconf.l
+zconf.l:255: warning, -s 选项已给定但是可以吻合缺省规则
+bison -t -l -p zconf -o zconf.tab.c zconf.y
+sed -E "s/\\x0D$//" zconf.gperf | gperf -t --output-file zconf.hash.c -a -C -E -g -k '1,3,$' -p -t
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o zconf.tab.o zconf.tab.c
+lxdialog/check-lxdialog.sh -check cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE -lncurses -ltinfo
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/checklist.o lxdialog/checklist.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/util.o lxdialog/util.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/inputbox.o lxdialog/inputbox.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/textbox.o lxdialog/textbox.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/yesno.o lxdialog/yesno.c
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o lxdialog/menubox.o lxdialog/menubox.c
+cc -o mconf mconf.o zconf.tab.o lxdialog/checklist.o lxdialog/util.o lxdialog/inputbox.o lxdialog/textbox.o lxdialog/yesno.o lxdialog/menubox.o -lncurses -ltinfo
+cc  -D_GNU_SOURCE -DCURSES_LOC="<ncurses.h>" -DLOCALE   -c -o conf.o conf.c
+cc -o conf conf.o  zconf.tab.o -lncurses -ltinfo
+make[1]: Leaving directory '/home/chenwu/AzureESP32/esp-idf/tools/kconfig'
+GENCONFIG
+WARNING: Toolchain version is not supported: crosstool-NG 8d95cad
+Expected to see version: crosstool-NG crosstool-ng-1.22.0-61-gab8375a
+Please check ESP-IDF setup instructions and update the toolchain, or proceed at your own risk.
+WARNING: Compiler version is not supported: 4.8.5
+Expected to see version(s): 5.2.0
+Please check ESP-IDF setup instructions and update the toolchain, or proceed at your own risk.
+CC src/bootloader_flash.o
+CC src/efuse.o
+CC src/secure_boot.o
+CC src/secure_boot_signatures.o
+CC src/flash_partitions.o
+CC src/esp_image_format.o
+CC src/flash_encrypt.o
+CC src/bootloader_random.o
+AR libbootloader_support.a
+CC log.o
+AR liblog.a
+CC spi_flash_rom_patch.o
+AR libspi_flash.a
+CC micro-ecc/uECC.o
+AR libmicro-ecc.a
+CC bootloader_start.o
+AR libmain.a
+LD bootloader.elf
+esptool.py v2.0-beta1
+Building partitions from /home/chenwu/AzureESP32/esp-idf/components/partition_table/partitions_singleapp.csv...
+CC esp_ota_ops.o
+AR libapp_update.a
+CC src/bootloader_flash.o
+CC src/efuse.o
+CC src/secure_boot.o
+CC src/secure_boot_signatures.o
+CC src/flash_partitions.o
+CC src/esp_image_format.o
+CC src/flash_encrypt.o
+CC src/bootloader_random.o
+AR libbootloader_support.a
+CC bt.o
+AR libbt.a
+CC azure/c-utility/src/xlogging.o
+CC azure/c-utility/src/buffer.o
+CC azure/c-utility/src/consolelogger.o
+CC azure/c-utility/src/constbuffer.o
+CC azure/c-utility/src/constmap.o
+CC azure/c-utility/src/crt_abstractions.o
+CC azure/c-utility/src/doublylinkedlist.o
+CC azure/c-utility/src/gballoc.o
+CC azure/c-utility/src/gb_stdio.o
+CC azure/c-utility/src/gb_time.o
+CC azure/c-utility/src/hmac.o
+CC azure/c-utility/src/hmacsha256.o
+CC azure/c-utility/src/httpapiex.o
+CC azure/c-utility/src/httpapiexsas.o
+CC azure/c-utility/src/httpheaders.o
+CC azure/c-utility/src/map.o
+CC azure/c-utility/src/optionhandler.o
+CC azure/c-utility/src/sastoken.o
+CC azure/c-utility/src/sha1.o
+CC azure/c-utility/src/sha224.o
+CC azure/c-utility/src/sha384-512.o
+CC azure/c-utility/src/strings.o
+CC azure/c-utility/src/string_tokenizer.o
+CC azure/c-utility/src/urlencode.o
+CC azure/c-utility/src/usha.o
+CC azure/c-utility/src/vector.o
+CC azure/c-utility/src/xio.o
+CC azure/c-utility/src/base64.o
+CC azure/iothub_client/src/iothub_client.o
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/src/iothub_client.c:170:41: warning: 'iothub_ll_message_callback' defined but not used [-Wunused-function]
+ static IOTHUBMESSAGE_DISPOSITION_RESULT iothub_ll_message_callback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
+                                         ^
+CC azure/iothub_client/src/iothub_client_ll.o
+CC azure/iothub_client/src/iothub_client_ll_uploadtoblob.o
+In file included from /home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/src/iothub_client_ll_uploadtoblob.c:18:0:
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:19:24: warning: 'OPTION_LOG_TRACE' defined but not used [-Wunused-variable]
+     static const char* OPTION_LOG_TRACE = "logtrace";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:22:24: warning: 'OPTION_KEEP_ALIVE' defined but not used [-Wunused-variable]
+     static const char* OPTION_KEEP_ALIVE = "keepalive";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:24:24: warning: 'OPTION_PROXY_HOST' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_HOST = "proxy_address";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:25:24: warning: 'OPTION_PROXY_USERNAME' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_USERNAME = "proxy_username";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:26:24: warning: 'OPTION_PROXY_PASSWORD' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_PASSWORD = "proxy_password";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:28:24: warning: 'OPTION_SAS_TOKEN_LIFETIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_SAS_TOKEN_LIFETIME = "sas_token_lifetime";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:29:24: warning: 'OPTION_SAS_TOKEN_REFRESH_TIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_SAS_TOKEN_REFRESH_TIME = "sas_token_refresh_time";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:30:24: warning: 'OPTION_CBS_REQUEST_TIMEOUT' defined but not used [-Wunused-variable]
+     static const char* OPTION_CBS_REQUEST_TIMEOUT = "cbs_request_timeout";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:32:24: warning: 'OPTION_MIN_POLLING_TIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_MIN_POLLING_TIME = "MinimumPollingTime";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:33:24: warning: 'OPTION_BATCHING' defined but not used [-Wunused-variable]
+     static const char* OPTION_BATCHING = "Batching";
+                        ^
+CC azure/iothub_client/src/iothub_message.o
+CC azure/iothub_client/src/iothubtransport.o
+CC azure/iothub_client/src/iothubtransportmqtt.o
+CC azure/iothub_client/src/iothubtransport_mqtt_common.o
+In file included from /home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/src/iothubtransport_mqtt_common.c:14:0:
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:24:24: warning: 'OPTION_PROXY_HOST' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_HOST = "proxy_address";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:25:24: warning: 'OPTION_PROXY_USERNAME' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_USERNAME = "proxy_username";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:26:24: warning: 'OPTION_PROXY_PASSWORD' defined but not used [-Wunused-variable]
+     static const char* OPTION_PROXY_PASSWORD = "proxy_password";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:28:24: warning: 'OPTION_SAS_TOKEN_LIFETIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_SAS_TOKEN_LIFETIME = "sas_token_lifetime";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:29:24: warning: 'OPTION_SAS_TOKEN_REFRESH_TIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_SAS_TOKEN_REFRESH_TIME = "sas_token_refresh_time";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:30:24: warning: 'OPTION_CBS_REQUEST_TIMEOUT' defined but not used [-Wunused-variable]
+     static const char* OPTION_CBS_REQUEST_TIMEOUT = "cbs_request_timeout";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:32:24: warning: 'OPTION_MIN_POLLING_TIME' defined but not used [-Wunused-variable]
+     static const char* OPTION_MIN_POLLING_TIME = "MinimumPollingTime";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/inc/iothub_client_options.h:33:24: warning: 'OPTION_BATCHING' defined but not used [-Wunused-variable]
+     static const char* OPTION_BATCHING = "Batching";
+                        ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/azure/iothub_client/src/iothubtransport_mqtt_common.c:58:20: warning: 'TOPIC_DEVICE_METHOD_RESPONSE' defined but not used [-Wunused-variable]
+ static const char* TOPIC_DEVICE_METHOD_RESPONSE = "$iothub/methods/res";
+                    ^
+CC azure/iothub_client/src/version.o
+CC azure/umqtt/src/mqtt_client.o
+CC azure/umqtt/src/mqtt_codec.o
+CC azure/umqtt/src/mqtt_message.o
+CC adapter/azure/c-utility/agenttime_esp32.o
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/agenttime_esp32.c: In function 'sntp_get_current_timestamp':
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/agenttime_esp32.c:64:7: warning: unused variable 'strftime_buf' [-Wunused-variable]
+  char strftime_buf[64];
+       ^
+CC adapter/azure/c-utility/platform_esp32.o
+CC adapter/azure/c-utility/threadapi_esp32.o
+CC adapter/azure/c-utility/tickcounter_esp32.o
+CC adapter/azure/c-utility/tlsio_ssl_esp32.o
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:84:29: warning: 'struct ssl_ctx' declared inside parameter list [enabled by default]
+ int SSL_set_fragment(struct ssl_ctx *ctx, unsigned int frag)
+                             ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:84:29: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c: In function 'SSL_set_fragment':
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:87:9: warning: unused variable 'ret' [-Wunused-variable]
+     int ret = -1;
+         ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c: In function 'openssl_thread_LWIP_CONNECTION':
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:319:21: warning: passing argument 1 of 'SSL_set_fragment' from incompatible pointer type [enabled by default]
+                     ret = SSL_set_fragment(ctx, OPENSSL_FRAGMENT_SIZE);
+                     ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:84:5: note: expected 'struct ssl_ctx *' but argument is of type 'struct SSL_CTX *'
+ int SSL_set_fragment(struct ssl_ctx *ctx, unsigned int frag)
+     ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c: In function 'tlsio_openssl_close':
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:633:17: warning: unused variable 'ret' [-Wunused-variable]
+             int ret = SSL_shutdown(tls_io_instance->ssl);
+                 ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c: At top level:
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:101:13: warning: 'tlsio_openssl_DestroyOption' defined but not used [-Wunused-function]
+ static void tlsio_openssl_DestroyOption(const char* name, const void* value)
+             ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:148:22: warning: 'openssl_locks' defined but not used [-Wunused-variable]
+ static LOCK_HANDLE * openssl_locks = NULL;
+                      ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:441:12: warning: 'add_certificate_to_store' defined but not used [-Wunused-function]
+ static int add_certificate_to_store(TLS_IO_INSTANCE* tls_io_instance, const char* certValue)
+            ^
+/home/chenwu/AzureESP32/esp-idf/components/cloud_support/adapter/azure/c-utility/tlsio_ssl_esp32.c:447:12: warning: 'create_openssl_instance' defined but not used [-Wunused-function]
+ static int create_openssl_instance(TLS_IO_INSTANCE* tlsInstance)
+            ^
+AR libcloud_support.a
+CC libcoap/src/address.o
+CC libcoap/src/async.o
+CC libcoap/src/block.o
+CC libcoap/src/coap_time.o
+CC libcoap/src/debug.o
+CC libcoap/src/encode.o
+CC libcoap/src/hashkey.o
+CC libcoap/src/mem.o
+CC libcoap/src/net.o
+CC libcoap/src/option.o
+CC libcoap/src/pdu.o
+CC libcoap/src/resource.o
+CC libcoap/src/str.o
+CC libcoap/src/subscribe.o
+CC libcoap/src/uri.o
+CC port/coap_io_socket.o
+AR libcoap.a
+CXX cxx_guards.o
+AR libcxx.a
+CC spi_master.o
+CC sigmadelta.o
+CC uart.o
+CC i2s.o
+CC periph_ctrl.o
+CC ledc.o
+CC gpio.o
+CC pcnt.o
+CC rmt.o
+CC sdmmc_transaction.o
+CC timer.o
+CC sdmmc_host.o
+CC i2c.o
+CC rtc_module.o
+AR libdriver.a
+CC panic.o
+CC core_dump.o
+CC event_default_handlers.o
+CC task_wdt.o
+CC system_api.o
+CC lib_printf.o
+CC gdbstub.o
+CC cpu_util.o
+CC phy_init.o
+CC deep_sleep.o
+CC heap_alloc_caps.o
+CC freertos_hooks.o
+CC crosscore_int.o
+CC cpu_start.o
+CC ipc.o
+CC intr_alloc.o
+CC int_wdt.o
+CC event_loop.o
+CC cpu_freq.o
+CC hw_random.o
+CC brownout.o
+CC hwcrypto/sha.o
+CC hwcrypto/aes.o
+AR libesp32.a
+CC emac_dev.o
+CC emac_main.o
+AR libethernet.a
+CC library/xmltok.o
+CC library/xmlparse.o
+CC library/xmlrole.o
+CC library/xmltok_ns.o
+CC library/xmltok_impl.o
+CC port/minicheck.o
+CC port/expat_element.o
+CC port/chardata.o
+AR libexpat.a
+CC src/option/syscall.o
+CC src/option/unicode.o
+CC src/ff.o
+CC src/vfs_fat_sdmmc.o
+CC src/vfs_fat.o
+CC src/diskio.o
+AR libfatfs.a
+CC ringbuf.o
+CC heap_regions_debug.o
+CC xtensa_intr.o
+CC queue.o
+CC croutine.o
+CC list.o
+CC xtensa_init.o
+CC port.o
+CC heap_regions.o
+CC event_groups.o
+CC tasks.o
+CC timers.o
+CC FreeRTOS-openocd.o
+CC xtensa_overlay_os_hook.o
+AS xtensa_intr_asm.o
+AS xtensa_context.o
+AS xtensa_vectors.o
+AS portasm.o
+AR libfreertos.a
+CC library/cJSON.o
+CC port/cJSON_Utils.o
+AR libjson.a
+CC log.o
+AR liblog.a
+CC api/pppapi.o
+CC api/netbuf.o
+CC api/api_lib.o
+CC api/netifapi.o
+CC api/tcpip.o
+CC api/netdb.o
+CC api/err.o
+CC api/api_msg.o
+CC api/sockets.o
+CC api/lwip_debug.o
+CC apps/sntp/sntp.o
+CC apps/ping/ping.o
+CC apps/ping/esp_ping.o
+CC apps/dhcpserver.o
+CC core/ipv4/ip_frag.o
+CC core/ipv4/dhcp.o
+CC core/ipv4/ip4_addr.o
+CC core/ipv4/igmp.o
+CC core/ipv4/ip4.o
+CC core/ipv4/autoip.o
+CC core/ipv4/icmp.o
+CC core/ipv6/ip6_frag.o
+CC core/ipv6/dhcp6.o
+CC core/ipv6/inet6.o
+CC core/ipv6/ip6_addr.o
+CC core/ipv6/ip6.o
+CC core/ipv6/nd6.o
+CC core/ipv6/mld6.o
+CC core/ipv6/ethip6.o
+CC core/ipv6/icmp6.o
+CC core/stats.o
+CC core/mem.o
+CC core/init.o
+CC core/memp.o
+CC core/tcp.o
+CC core/dns.o
+CC core/ip.o
+CC core/def.o
+CC core/raw.o
+CC core/tcp_in.o
+CC core/pbuf.o
+CC core/netif.o
+CC core/sys.o
+CC core/timers.o
+CC core/inet_chksum.o
+CC core/udp.o
+CC core/tcp_out.o
+CC netif/slipif.o
+CC netif/etharp.o
+CC netif/ethernet.o
+CC netif/lowpan6.o
+CC netif/ethernetif.o
+CC port/freertos/sys_arch.o
+CC port/netif/wlanif.o
+CC port/netif/ethernetif.o
+AR liblwip.a
+CC library/ecp_curves.o
+CC library/pkcs12.o
+CC library/error.o
+CC library/pkcs5.o
+CC library/cipher_wrap.o
+CC library/sha1.o
+CC library/x509_csr.o
+CC library/md4.o
+CC library/gcm.o
+CC library/ecp.o
+CC library/blowfish.o
+CC library/x509.o
+CC library/cipher.o
+CC library/ssl_ticket.o
+CC library/pem.o
+CC library/entropy_poll.o
+CC library/x509write_csr.o
+CC library/certs.o
+CC library/version_features.o
+CC library/havege.o
+CC library/ripemd160.o
+CC library/rsa.o
+CC library/net.o
+CC library/entropy.o
+CC library/md_wrap.o
+CC library/sha256.o
+CC library/dhm.o
+CC library/pkwrite.o
+CC library/ssl_cli.o
+CC library/timing.o
+CC library/asn1parse.o
+CC library/ssl_tls.o
+CC library/version.o
+CC library/ssl_cache.o
+CC library/memory_buffer_alloc.o
+CC library/md2.o
+CC library/ecdsa.o
+CC library/ssl_srv.o
+CC library/x509_crt.o
+CC library/ecdh.o
+CC library/debug.o
+CC library/x509_create.o
+CC library/ecjpake.o
+CC library/oid.o
+CC library/asn1write.o
+CC library/pkcs11.o
+CC library/sha512.o
+CC library/base64.o
+CC library/xtea.o
+CC library/aes.o
+CC library/x509_crl.o
+CC library/x509write_crt.o
+CC library/arc4.o
+CC library/bignum.o
+CC library/pkparse.o
+CC library/padlock.o
+CC library/threading.o
+CC library/md.o
+CC library/camellia.o
+CC library/aesni.o
+CC library/ssl_ciphersuites.o
+CC library/ctr_drbg.o
+CC library/md5.o
+CC library/ssl_cookie.o
+CC library/hmac_drbg.o
+CC library/des.o
+CC library/pk.o
+CC library/platform.o
+CC library/ccm.o
+CC library/pk_wrap.o
+CC port/esp_sha1.o
+CC port/net.o
+CC port/esp_sha256.o
+CC port/esp_bignum.o
+CC port/esp_hardware.o
+CC port/esp_sha512.o
+AR libmbedtls.a
+CC mdns.o
+AR libmdns.a
+CC micro-ecc/uECC.o
+AR libmicro-ecc.a
+CC time.o
+CC reent_init.o
+CC syscalls.o
+CC syscall_table.o
+CC locks.o
+AR libnewlib.a
+CC library/nghttp2_http.o
+CC library/nghttp2_version.o
+CC library/nghttp2_mem.o
+CC library/nghttp2_hd_huffman.o
+CC library/nghttp2_session.o
+CC library/nghttp2_callbacks.o
+CC library/nghttp2_stream.o
+CC library/nghttp2_hd.o
+CC library/nghttp2_priority_spec.o
+CC library/nghttp2_buf.o
+CC library/nghttp2_option.o
+CC library/nghttp2_npn.o
+CC library/nghttp2_rcbuf.o
+CC library/nghttp2_helper.o
+CC library/nghttp2_frame.o
+CC library/nghttp2_outbound_item.o
+CC library/nghttp2_hd_huffman_data.o
+CC library/nghttp2_pq.o
+CC library/nghttp2_queue.o
+CC library/nghttp2_submit.o
+CC library/nghttp2_map.o
+CC port/http_parser.o
+AR libnghttp.a
+CXX src/nvs_types.o
+CXX src/nvs_page.o
+CXX src/nvs_item_hash_list.o
+CXX src/nvs_pagemanager.o
+CXX src/nvs_storage.o
+CXX src/nvs_api.o
+AR libnvs_flash.a
+CC library/ssl_cert.o
+CC library/ssl_methods.o
+CC library/ssl_pkey.o
+CC library/ssl_x509.o
+CC library/ssl_lib.o
+CC library/ssl_stack.o
+CC platform/ssl_pm.o
+CC platform/ssl_port.o
+AR libopenssl.a
+CC sdmmc_cmd.o
+AR libsdmmc.a
+CC flash_mmap.o
+CC partition.o
+CC spi_flash_rom_patch.o
+CC cache_utils.o
+CC flash_ops.o
+AR libspi_flash.a
+CC tcpip_adapter_lwip.o
+AR libtcpip_adapter.a
+CC ulp.o
+AR libulp.a
+CC vfs_uart.o
+CC vfs.o
+AR libvfs.a
+CC src/crypto/aes-internal-enc.o
+CC src/crypto/sha256-internal.o
+CC src/crypto/md5-internal.o
+CC src/crypto/aes-internal.o
+CC src/crypto/sha1.o
+CC src/crypto/aes-internal-dec.o
+CC src/crypto/crypto_internal.o
+CC src/crypto/aes-unwrap.o
+CC src/crypto/crypto_internal-rsa.o
+CC src/crypto/des-internal.o
+CC src/crypto/dh_groups.o
+CC src/crypto/ms_funcs.o
+CC src/crypto/aes-wrap.o
+CC src/crypto/sha1-internal.o
+CC src/crypto/md4-internal.o
+CC src/crypto/dh_group5.o
+CC src/crypto/sha256.o
+CC src/crypto/md5.o
+CC src/crypto/aes-cbc.o
+CC src/crypto/sha1-pbkdf2.o
+CC src/crypto/rc4.o
+CC src/crypto/crypto_internal-modexp.o
+CC src/crypto/crypto_internal-cipher.o
+CC src/crypto/bignum.o
+CC port/os_xtensa.o
+AR libwpa_supplicant.a
+CC eri.o
+CC trax.o
+AR libxtensa-debug-module.a
+CC iothub_client_sample_mqtt.o
+CC azure_main.o
+AR libmain.a
+LD azure.elf
+esptool.py v2.0-beta1
+To flash all build output, run 'make flash' or:
+python /home/chenwu/AzureESP32/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0x1000 /home/chenwu/AzureESP32/esp-idf/examples/cloud_support/azure/build/bootloader/bootloader.bin 0x10000 /home/chenwu/AzureESP32/esp-idf/examples/cloud_support/azure/build/azure.bin 0x8000 /home/chenwu/AzureESP32/esp-idf/examples/cloud_support/azure/build/partitions_singleapp.bin
+
