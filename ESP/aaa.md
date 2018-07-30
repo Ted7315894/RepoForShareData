@@ -23,65 +23,77 @@ Main workflow:
 ## Preparation 
 
 <a name="preparation"></a>
-1. **Hardware**  
-	- An **ubuntu environment** should be set up to build your demo;
-	- Any **[ESP device](https://www.espressif.com/en/products/hardware/modules)** can be used to run your demo.
-2. **Azure IoT Hub**  
-  - [Get iothub connection string (primary key)](https://www.azure.cn/en-us/pricing/1rmb-trial-full/?form-type=identityauth) from the Azure IoT Hub, which will be used later. An example can be seen below:
-		```
-		HostName=yourname-ms-lot-hub.azure-devices.cn;SharedAccessKeyName=iothubowner;SharedAccessKey=zMeLQ0JTlZXVcHBVOwRFVmlFtcCz+CtbDpUPBWexbIY=
-		```
-  - For step-by-step instructions, please click [here](doc/IoT_Suite.md).
-3. **iothub-explorer**
-	- Install [Node.js](https://nodejs.org/en/);  
-	- Install [iothub-explorer](https://www.npmjs.com/package/iothub-explorer) with command line `npm install -g iothub-explorer`.
-		- If failed, please check [here](http://thinglabs.io/workshop/esp8266/setup-azure-iot-hub/) for more information.
-		- If succeeded, please check the version information with the command lines below:
+### 1. Hardware
+- An **ubuntu environment** should be set up to build your demo;
+- Any **[ESP device](https://www.espressif.com/en/products/hardware/modules)** can be used to run your demo.
+
+### 2. Azure IoT Hub
+- [Get iothub connection string (primary key)](https://www.azure.cn/en-us/pricing/1rmb-trial-full/?form-type=identityauth) from the Azure IoT Hub, which will be used later. An example can be seen below:
+
+```
+HostName=yourname-ms-lot-hub.azure-devices.cn;SharedAccessKeyName=iothubowner;SharedAccessKey=zMeLQ0JTlZXVcHBVOwRFVmlFtcCz+CtbDpUPBWexbIY=
+```
+- For step-by-step instructions, please click [here](doc/IoT_Suite.md).
+
+### 3. iothub-explorer
+- Install [Node.js](https://nodejs.org/en/);  
+- Install [iothub-explorer](https://www.npmjs.com/package/iothub-explorer) with command line `npm install -g iothub-explorer`.
+  - If failed, please check [here](http://thinglabs.io/workshop/esp8266/setup-azure-iot-hub/) for more information.
+  - If succeeded, please check the version information with the command lines below:
 ```
 $ node -v
 v6.9.5
 $ iothub-explorer -V
 1.1.6
 ```
+
 After that, you should be able to use iothub-explorer to manage your iot-device.
-4. 	**Device Connection String**
-	- login with the **iothub connection string (primary key)** you got earlier with command lines;
-	- create your device, and get a **device connection string**. An example can be seen:
+
+### 4. Device Connection String
+- login with the **iothub connection string (primary key)** you got earlier with command lines;
+- create your device, and get a **device connection string**. An example can be seen:
+
 ``` 
 "HostName=esp-hub.azure-devices.net;DeviceId=yourdevice;SharedAccessKey=L7tvFTjFuVTQHtggEtv3rp+tKEJzQLLpDnO0edVGKCg=";
 ```
-For detailed instruction, please click [Here](https://github.com/ustccw/RepoForShareData/blob/master/Microsoft/AzureData/iothub-explorer). 
-5. **SDK**
-	- [AZURE-SDK](https://github.com/espressif/esp-azure) can be implemented to connect your ESP devices to Azure, using MQTT protocol.
- 	- Espressif SDK
-	 	- For ESP32 platform: [ESP-IDF](https://github.com/espressif/esp-idf)  
- 		- For ESP8266 platform: [ESP8266_RTOS_SDK](https://github.com/espressif/ESP8266_RTOS_SDK)  
-6. **Compiler**
- 	- For ESP32 platform: [Here](https://github.com/espressif/esp-idf/blob/master/README.md)
- 	- For ESP8266 platform: [Here](https://github.com/espressif/ESP8266_RTOS_SDK/blob/master/README.md)
+
+For detailed instruction, please click [Here](https://github.com/ustccw/RepoForShareData/blob/master/Microsoft/AzureData/iothub-explorer).
+ 
+### 5. SDK
+- [AZURE-SDK](https://github.com/espressif/esp-azure) can be implemented to connect your ESP devices to Azure, using MQTT protocol.
+- Espressif SDK
+  - For ESP32 platform: [ESP-IDF](https://github.com/espressif/esp-idf)  
+  - For ESP8266 platform: [ESP8266_RTOS_SDK](https://github.com/espressif/ESP8266_RTOS_SDK)
+
+### 6. Compiler
+- For ESP32 platform: [Here](https://github.com/espressif/esp-idf/blob/master/README.md)
+- For ESP8266 platform: [Here](https://github.com/espressif/ESP8266_RTOS_SDK/blob/master/README.md)
 
 ## Configuring and Building
 
 <a name="Configuring_and_Building"></a>
 
-1. Updating variables
-	- Replace the `connectionString` variable with your device connection string in [esp-azure/main/iothub_client_sample_mqtt.c](https://github.com/espressif/esp-azure/blob/master/main/iothub_client_sample_mqtt.c).
+### 1. Updating variables
+- Replace the `connectionString` variable with your device connection string in [esp-azure/main/iothub_client_sample_mqtt.c](https://github.com/espressif/esp-azure/blob/master/main/iothub_client_sample_mqtt.c).
+
 ```
 static const char* connectionString = '[azure connection string]';
 ```
-	- The azure connection string contains Hostname, DeviceId, and SharedAccessKey in the format:
+- The azure connection string contains Hostname, DeviceId, and SharedAccessKey in the format:
+
 ```
 "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
 ```
-2. Configuring your Wi-Fi and serial port
-	- Go to `make menuconfig` -> `Example configuration` to  configure your Wi-Fi SSID and Password; 
-	- Go to `make menuconfig` -> `Serial flasher config` to configure you serial port.
-3. Building your demo and flash to ESP device with `$make flash`.
-	If failed, please:
-	- make sure your ESP device had connected to PC with serial port;
-	- make sure you have selected the corrected serial port;
-	- command `> sudo usermod -a -G dialout $USER` can also be used.
-		
+
+### 2. Configuring your Wi-Fi and serial port
+- Go to `make menuconfig` -> `Example configuration` to  configure your Wi-Fi SSID and Password; 
+- Go to `make menuconfig` -> `Serial flasher config` to configure you serial port.
+
+### 3. Building your demo and flash to ESP device with `$make flash`.
+If failed, please:
+- make sure your ESP device had connected to PC with serial port;
+- make sure you have selected the corrected serial port;
+  - command `> sudo usermod -a -G dialout $USER` can also be used.
 
 ## Checking Result
 
@@ -89,7 +101,7 @@ static const char* connectionString = '[azure connection string]';
 
 Please check results on both the iothub and device side:
 
-- iothub: log into iothub-explorer, and monitor events with command `iothub-explorer monitor-events AirConditionDevice_001 --login 'HostName=youriothub-ms-lot-hub.azure-devices.cn;SharedAccessKeyName=iothubowner;SharedAccessKey=zMeLQ0JTlZXVcHBVOwRFVmlFtcCz+CtbDpUPBWexbIY='`
+- iothub: log into iothub-explorer, and monitor events with command `iothub-explorer monitor-events yourdevice --login 'yourprimarykey'`
 - ESP device: monitor events with command `make monitor`
 
 ESP device would send data to the Azure cloud, and then you would be able to receive data at the iothub side.
